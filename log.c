@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 static int do_syslog = 0;
-static int loglevel = 0;
+static int loglevel = LOG_WARNING;
 
 void setup_syslog() {
   openlog(NULL, LOG_NOWAIT, LOG_DAEMON);
