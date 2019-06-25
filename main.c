@@ -272,12 +272,10 @@ int main(int argc, char **argv) {
 
   if (!spath) {
     FATAL("missing socket path");
-    return 1;
   }
 
   if (!kpaths) {
     FATAL("no keys specified");
-    return 1;
   }
   
   r = Esys_Initialize(&ctx->esys, NULL, NULL);
