@@ -1,0 +1,13 @@
+# Configuration for /etc/init.d/tpm2-ssh-agent
+
+# Options to pass to tpm2-ssh-agent
+#tpm2_ssh_agent_opts=""
+
+# Path for socket
+tpm2_ssh_agent_socket="/run/tpm2_ssh_agent.socket"
+
+# Space seperated list of key files
+#tpm2_ssh_agent_keyfiles=""
+
+# Space seperated list of key handles
+#tpm2_ssh_agent_keyhandles=""

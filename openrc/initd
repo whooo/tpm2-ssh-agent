@@ -1,0 +1,28 @@
+#!/sbin/openrc-run
+
+description="TPM 2.0 SSH agent"
+
+pidfile="/run/${RC_SVCNAME}.pid"
+command="/usr/bin/tpm2-ssh-agent"
+
+depend()
+{
+    need dev
+    before sshd
+}
+
+start() {
+	OPTS="${tpm2_ssh_agent_opts} --pidfile ${pidfile}"
+	OPTS="${OPTS} --socket ${tpm2_ssh_agent_socket}"
+	for kf in $tpm2_ssh_agent_keyfiles
+	do
+	    OPTS="${OPTS} --key ${kf}"
+	done
+	for kh in $tpm2_ssh_agent_keyhandles
+	do
+	    OPTS="${OPTS} --key-handle ${kh}"
+	done
+	ebegin "Starting tpm2-ssh-agent"
+	$command $OPTS
+	eend $? || return 1
+}
