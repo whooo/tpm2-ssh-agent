@@ -270,10 +270,6 @@ int main(int argc, char **argv) {
     }
   }
 
-  if (!spath) {
-    FATAL("missing socket path");
-  }
-
   if (!kpaths) {
     FATAL("no keys specified");
   }

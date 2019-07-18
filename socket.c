@@ -11,10 +11,55 @@
 #include <errno.h>
 #include "agent.h"
 
+#ifdef WITH_SYSTEMD
+#include <systemd/sd-daemon.h>
+
+int setup_systemd(context_t *ctx) {
+  int sfd, n;
+
+  n = sd_listen_fds(0);
+  if (n < 0) {
+    errno = n;
+    return -1;
+  }
+
+  if (!n) {
+    return 0;
+  }
+
+  if (n > 1) {
+    FATAL("Too many systemd sockets");
+  }
+
+  sfd = SD_LISTEN_FDS_START;
+
+  n = sd_is_socket_unix(sfd, SOCK_STREAM, 1, NULL, 0);
+  if (n < 0) {
+    errno = n;
+    return -1;
+  }
+  else if (!n) {
+    FATAL("Bad systemd socket type");
+  }
+
+  return sfd;
+}
+#endif
 
 int setup_socket(context_t *ctx, const char *path) {
   int r, sfd;
   struct sockaddr_un sname = { .sun_family = AF_UNIX };
+
+#ifdef WITH_SYSTEMD
+  sfd = setup_systemd(ctx);
+  if (sfd) {
+    return sfd;
+  }
+#endif
+
+  if (!path) {
+    FATAL("missing socket path");
+  }
 
   if (strlen(path) > (sizeof(sname.sun_path) - 1)) {
     errno = EOVERFLOW;

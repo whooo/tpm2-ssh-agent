@@ -1,0 +1,9 @@
+[Unit]
+Description=TPM2 SSH agent
+
+[Service]
+ExecStart=/usr/bin/tpm2-ssh-agent --key /PATH/TO/KEY -f
+Type=simple
+
+[Install]
+WantedBy=default.target
