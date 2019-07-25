@@ -1,5 +1,5 @@
-CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wall $(C_SYSTEMD)
-LDFLAGS=-Wl,-z,relro $(shell pkg-config --libs tss2-esys libcrypto) $(LD_SYSTEMD)
+CFLAGS=-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wall
+LDFLAGS=-Wl,-z,relro $(shell pkg-config --libs tss2-esys libcrypto)
 
 ifdef WITH_SYSTEMD
 CFLAGS +=-DWITH_SYSTEMD
