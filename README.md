@@ -3,23 +3,18 @@ SSH agent using TPM 2.0
 
 # Example setup
 ```
-$ tpm2_createprimary -H o -g sha256 -G ecc
-ObjectAttribute: 0x00030072
-
-CreatePrimary Succeed ! Handle: 0x80000000
-
-
-$ tpm2_create -H 0x80000000 -g sha256 -G rsa -u public -r private
-algorithm:
+$ tpm2_createprimary -C o -c primary.ctx -g sha256 -G ecc
+name-alg:
   value: sha256
   raw: 0xb
-attributes:
-  value: fixedtpm|fixedparent|sensitivedataorigin|userwithauth|decrypt|sign
-  raw: 0x60072
-type: 
-  value: rsa
-  raw: 0x1
-  rsa: .....
+...
+
+$ tpm2_create -C primary.ctx -g sha256 -G rsa -u public -r private
+name-alg:
+  value: sha256
+  raw: 0xb
+...
+
 $ cat public private > rsa-key
 $ tpm2-ssh-agent --socket /tmp/test.socket --key rsa-key -f
 ```
