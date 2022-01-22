@@ -23,7 +23,7 @@ buffer_t *new_buffer() {
   b->offset = 0;
   
   return b;
-};
+}
 
 void free_buffer(buffer_t *buf) {
   if (!buf) {
@@ -175,8 +175,8 @@ int buf_get_data(buffer_t *buf, uint8_t **data, uint32_t *len) {
 }
 
 int buf_add_mpint(buffer_t *buf, uint8_t *data, uint32_t len) {
-  int r, i = 0;
-  uint32_t nbytes = 0;
+  int r;
+  uint32_t nbytes = 0, i = 0;
   uint8_t *first;
 
   if (!len) {

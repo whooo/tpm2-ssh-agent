@@ -90,9 +90,6 @@ TPM2_RC tpm_load_file(ESYS_CONTEXT *ctx, const char *path, ESYS_TR parent, tpm_k
 
   key->public = public.publicArea;
 
-  //key->keyblob.data = NULL;
-  //key->keyblob.datalen = 0;
-  
   return 0;
 }
 

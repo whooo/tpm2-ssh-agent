@@ -11,7 +11,7 @@
 
 
 void dumpmessage(buffer_t *msg) {
-  int i;
+  uint32_t i;
   for (i=0;i < msg->len;i++) {
     printf("\\x%02x", msg->data[i]);
   }
@@ -207,7 +207,6 @@ int sign_rsa(ESYS_CONTEXT *ctx, tpm_key_t *key, uint32_t flags, uint8_t *data, s
   
  out:
   free_buffer(msgbuf);
-  //EVP_MD_CTX_free(mdctx);
   return r;
 }
 

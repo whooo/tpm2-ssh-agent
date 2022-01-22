@@ -140,7 +140,7 @@ void cleanup() {
 
 void sigexit(int signal) {
   exit(0);
-};
+}
 
 void usage(const char *name) {
   printf("Usage: %s [OPTIONS]\n"
@@ -243,7 +243,7 @@ int main(int argc, char **argv) {
       break;
     case 'i':
       handle = str_to_handle(optarg);
-      if (handle == -1) {
+      if (handle == (TPM2_HANDLE) -1) {
 	dprintf(2, "bad key handle: %s\n", optarg);
 	return 1;
       }
