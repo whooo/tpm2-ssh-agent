@@ -2,7 +2,8 @@
 Description=TPM2 SSH agent
 
 [Service]
-ExecStart=/usr/bin/tpm2-ssh-agent --key /PATH/TO/KEY -f
+EnvironmentFile=/etc/default/tpm2-ssh-agent
+ExecStart=/usr/bin/tpm2-ssh-agent -f $OPTS
 Type=simple
 
 [Install]

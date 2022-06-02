@@ -1,0 +1,1 @@
+OPTS="--key /etc/ssh/ssh_hostagent_rsa_key.tpm --key /etc/ssh/ssh_hostagent_ecc_key.tpm"

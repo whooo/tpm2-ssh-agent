@@ -1,0 +1,22 @@
+Source: tpm2-ssh-agent
+Section: unknown
+Priority: optional
+Maintainer: Erik Larsson <who+github@cnackers.org>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ libtss2-dev,
+ libsystemd-dev,
+Standards-Version: 4.6.1
+Homepage: https://github.com/whooo/tpm2-ssh-agent
+Vcs-Browser: https://github.com/whooo/tpm2-ssh-agent
+Vcs-Git: https://github.com/whooo/tpm2-ssh-agent.git
+
+Package: tpm2-ssh-agent
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Simple SSH agent for TPM2 keys
+ tpm2-ssh-agent is a simple agent to use TPM2 keys
+ without using ssh-agent and pkcs11.
