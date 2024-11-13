@@ -6,4 +6,4 @@ ListenStream=/run/tpm2_ssh_agent.socket
 SocketMode=0600
 
 [Install]
-WantedBy=default.target
+WantedBy=sockets.target
