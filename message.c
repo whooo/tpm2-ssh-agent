@@ -128,6 +128,8 @@ int handle_message(int fd, context_t *ctx, buffer_t *msg, buffer_t *rmsg) {
       return r;
     }
     break;
+  case SSH_AGENTC_EXTENSION:
+    return buf_add_byte(rmsg, SSH_AGENT_FAILURE);
   default:
     return -1;
   }
